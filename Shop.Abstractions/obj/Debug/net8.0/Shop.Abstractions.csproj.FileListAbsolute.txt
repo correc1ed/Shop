@@ -1,0 +1,11 @@
+D:\Projects\Shop\Shop.Abstractions\bin\Debug\net8.0\Shop.Abstractions.deps.json
+D:\Projects\Shop\Shop.Abstractions\bin\Debug\net8.0\Shop.Abstractions.dll
+D:\Projects\Shop\Shop.Abstractions\bin\Debug\net8.0\Shop.Abstractions.pdb
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.AssemblyInfoInputs.cache
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.AssemblyInfo.cs
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.csproj.CoreCompileInputs.cache
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.dll
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\refint\Shop.Abstractions.dll
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\Shop.Abstractions.pdb
+D:\Projects\Shop\Shop.Abstractions\obj\Debug\net8.0\ref\Shop.Abstractions.dll

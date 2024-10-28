@@ -1,0 +1,17 @@
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.csproj.AssemblyReference.cache
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.AssemblyInfoInputs.cache
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.AssemblyInfo.cs
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.csproj.CoreCompileInputs.cache
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Core.deps.json
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Core.dll
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Core.pdb
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Abstractions.dll
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Abstractions.pdb
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.csproj.CopyComplete
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.dll
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\refint\Shop.Core.dll
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.pdb
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\ref\Shop.Core.dll
+D:\Projects\Shop\Shop.Core\bin\Debug\net8.0\Shop.Core.runtimeconfig.json
+D:\Projects\Shop\Shop.Core\obj\Debug\net8.0\Shop.Core.genruntimeconfig.cache
