@@ -1,58 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Shop.Abstractions.Baskets;
-using Shop.Abstractions.Orders;
-using Shop.Abstractions.Orders.Requests.PostOrder;
-using Shop.Abstractions.Orders.Requests.PutOrderStatus;
-using Shop.Abstractions.Orders.Responses.GetOrderInformationById;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Shop.MessageContracts.Orders.Requests.PostOrder;
+using Shop.MessageContracts.Orders.Requests.PutOrderStatus;
+using Shop.MessageContracts.Orders.Responses.GetOrderInformationById;
+using Shop.Requests.OrderRequests.GetOrderInformationRequest;
+using Shop.Requests.OrderRequests.PostOrderRequest;
+using Shop.Requests.OrderRequests.PutOrderStatusRequest;
 
 namespace Shop.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class OrderController : ApiControllerBase
 {
-    private readonly IOrderService _orderService;
-
-    public OrderController(
-        IOrderService orderService
-    )
-    {
-        _orderService = orderService;
-    }
     /// <summary>
     /// Получение деталей заказа
     /// </summary>
-    [HttpGet("GetOrderInformation/{id}")]
-    public Task<GetOrderListByIdResponse> GetById(
+    [HttpGet("{id}")]
+    public async Task<GetOrderInfoByIdResponse> GetById(
+            [FromServices] IMediator mediator,
             [FromQuery] Guid id,
-            CancellationToken cancellationToken)
-    {
-        var result = _orderService.GetOrderListByIdAsync(id, cancellationToken);
-        return result;
-    }
+            CancellationToken cancellationToken) => await mediator.Send(new GetOrderInformationRequestQuery(id), cancellationToken);
 
     /// <summary>
     /// Создание заказа
     /// </summary>
-    [HttpPost("PostOrder")]
-    public Task AddOrder(
+    [HttpPost]
+    public async Task AddOrder(
+            [FromServices] IMediator mediator,
             [FromBody] PostOrderRequest request,
             CancellationToken cancellationToken)
     {
-        _orderService.AddOrderAsync(request, cancellationToken);
-
-        return Task.CompletedTask;
+        await mediator.Send(new PostOrderRequestCommand(request), cancellationToken);
     }
 
     /// <summary>
     /// Изменение статуса заказа
     /// </summary>
-    [HttpPut("PutOrderStatus")]
-    public Task UpdateOrderStatusById(
+    [HttpPut("{id}")]
+    public async Task UpdateOrderStatusById(
+            [FromServices] IMediator mediator,
             [FromQuery] Guid id,
             [FromBody] PutUpdateOrderStatusRequest request,
             CancellationToken cancellationToken)
     {
-        _orderService.PutUpdateOrderStatusAsync(id, request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PutOrderStatusRequestCommand(id, request), cancellationToken);
     }
 }

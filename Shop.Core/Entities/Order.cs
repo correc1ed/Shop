@@ -1,4 +1,5 @@
 ﻿using Shop.Core.Enums;
+using System.Text.Json.Serialization;
 
 namespace Shop.Core.Entities;
 
@@ -33,6 +34,9 @@ public class Order
     /// Дата доставки
     /// </summary>
     public DateTime DeliveredDate { get; set; }
+
+    [JsonConstructor]
+    public Order() { }
 
     public static Order Create(User user, List<Product> products, Status status, DateTime createdAt, DateTime deliveredDate)
     {

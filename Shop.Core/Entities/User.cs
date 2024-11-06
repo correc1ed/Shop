@@ -1,4 +1,6 @@
-﻿namespace Shop.Core.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Shop.Core.Entities;
 
 public class User
 {
@@ -8,7 +10,10 @@ public class User
     public string Password { get; set; }
     public bool IsAdministrator { get; set; }
 
+    [JsonConstructor]
     public User() { }
+
+    [JsonConstructor]
     public User(string name, string email, string password, bool isAdministrator)
     {
         Id = Guid.NewGuid();

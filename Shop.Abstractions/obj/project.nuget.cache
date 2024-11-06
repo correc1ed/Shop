@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d93htWaD8FqggcYIONwvbKp3A/EVI9gPN3+P+dBGInpcRsFzvLW4y9KBkYUycgr1EuzTwIeR+XTOJM3yvuhSDg==",
+  "dgSpecHash": "7+tz/4dJFHxLBYxOEYerLKpD3gb8Skex/KQ4IsgjxkUgCSGugsnyr4vHBCy7Gv6Zi9FPEFMle8pJVigkrabIMA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Shop\\Shop.Abstractions\\Shop.Abstractions.csproj",
+  "projectFilePath": "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

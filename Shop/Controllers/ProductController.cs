@@ -1,44 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Shop.Abstractions.Orders;
-using Shop.Abstractions.Products;
-using Shop.Abstractions.Products.Requests.PostProduct;
-using Shop.Abstractions.Products.Requests.PutProduct;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Shop.MessageContracts.Products.Requests.PostProduct;
+using Shop.MessageContracts.Products.Requests.PutProduct;
+using Shop.Requests.ProductRequests.PostProductRequest;
+using Shop.Requests.ProductRequests.PutProductRequest;
 
 namespace Shop.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class ProductController : ApiControllerBase
 {
-    private readonly IProductService _productService;
-
-    public ProductController(
-        IProductService productService
-    )
-    {
-        _productService = productService;
-    }
     /// <summary>
     /// Добавление товара
     /// </summary>
-    [HttpPost("PostAddProduct")]
-    public Task Add(
+    [HttpPost]
+    public async Task Add(
+        [FromServices] IMediator mediator,
         [FromBody] PostProductRequest request,
         CancellationToken cancellationToken)
     {
-        _productService.PostAddProductAsync(request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PostProductRequestCommand(request), cancellationToken);
     }
 
     /// <summary>
     /// Обновление информации о товаре
     /// </summary>
-    [HttpPut("PutUpdateProductInfo")]
-    public Task UpdateInfoById(
+    [HttpPut("{id}")]
+    public async Task UpdateInfoById(
+        [FromServices] IMediator mediator,
         [FromQuery] Guid id,
         [FromBody] PutProductRequest request,
         CancellationToken cancellationToken)
     {
-        _productService.PutUpdateProductInfoAsync(id, request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PutProductRequestCommand(id, request), cancellationToken);
     }
 }

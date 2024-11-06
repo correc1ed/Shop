@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Shop.Abstractions.Baskets;
-using Shop.Abstractions.Jwt;
-using Shop.Abstractions.Orders;
-using Shop.Abstractions.Products;
-using Shop.Abstractions.Users;
-using Shop.Core.Services;
-using Shop.Core.Services.Jwt;
+using Shop.BLL.Abstractions.Baskets;
+using Shop.BLL.Abstractions.Jwt;
+using Shop.BLL.Abstractions.Orders;
+using Shop.BLL.Abstractions.Products;
+using Shop.BLL.Abstractions.Users;
+using Shop.BLL.Services;
+using Shop.BLL.Services.Jwt;
 
 namespace Shop.DependencyInjection;
 public static class InternetShopExtensions

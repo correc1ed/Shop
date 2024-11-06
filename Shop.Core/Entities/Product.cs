@@ -1,4 +1,6 @@
-﻿namespace Shop.Core.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Shop.Core.Entities;
 
 public class Product
 {
@@ -33,6 +35,8 @@ public class Product
     /// </summary>
     public string? Category { get; set; }
 
+    [JsonConstructor]
+    public Product() { }
     public static Product Add(string name, string description, decimal price, int countInStorage, string category)
     {
         return new Product()

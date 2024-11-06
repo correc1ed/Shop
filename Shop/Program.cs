@@ -1,10 +1,18 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using Shop.BLL.Services.Jwt;
 using Shop.Core;
-using Shop.Core.Services.Jwt;
 using Shop.DependencyInjection;
-using System.Text;
+using Shop.Requests.BasketRequests.DeleteProductFromBasketByIdRequest;
+using Shop.Requests.BasketRequests.PostAddProductToBasketByIdRequest;
+using Shop.Requests.OrderRequests.GetOrderInformationRequest;
+using Shop.Requests.OrderRequests.PostOrderRequest;
+using Shop.Requests.OrderRequests.PutOrderStatusRequest;
+using Shop.Requests.ProductRequests.PostProductRequest;
+using Shop.Requests.ProductRequests.PutProductRequest;
+using Shop.Requests.UserRequests.PostUserLoginRequest;
+using Shop.Requests.UserRequests.PostUserRegistrationRequest;
+using Shop.Requests.UserRequests.PutUserProfileRequest;
+using System.Reflection;
 
 namespace Shop;
 
@@ -27,7 +35,23 @@ public class Program
         builder.Services.AddInternetShop();
 
         builder.Services.AddDbContext<EfContext>(options =>
-        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+        builder.Services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            cfg.RegisterServicesFromAssembly(typeof(DeleteProductFromBasketByIdRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PostAddProductToBasketByIdRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(GetOrderInformationRequestQuery).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PostOrderRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PutOrderStatusRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PostProductRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PutProductRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PostUserLoginRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PostUserRegistrationRequestCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(PutUserProfileRequestCommand).Assembly);
+        });
 
         //builder.Services.AddAuthentication(options =>
         //{

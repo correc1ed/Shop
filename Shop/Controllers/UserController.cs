@@ -1,91 +1,82 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Abstractions.Users;
-using Shop.Abstractions.Users.Requests.PostUserLogin;
-using Shop.Abstractions.Users.Requests.PostUserRegistration;
-using Shop.Abstractions.Users.Requests.PutUserProfile;
-using Shop.Abstractions.Users.Requests.PutUserProfileForAdmin;
-using Shop.Abstractions.Users.Responses.GetOrderList;
+using Shop.MessageContracts.Users.Requests.PostUserLogin;
+using Shop.MessageContracts.Users.Requests.PostUserRegistration;
+using Shop.MessageContracts.Users.Requests.PutUserProfile;
+using Shop.MessageContracts.Users.Requests.PutUserProfileForAdmin;
+using Shop.MessageContracts.Users.Responses.GetOrderList;
+using Shop.Requests.UserRequests.GetUserOrderListRequest;
+using Shop.Requests.UserRequests.PostUserLoginRequest;
+using Shop.Requests.UserRequests.PostUserRegistrationRequest;
+using Shop.Requests.UserRequests.PutUserProfileForAdminRequest;
+using Shop.Requests.UserRequests.PutUserProfileRequest;
 
 namespace Shop.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class UserController : ApiControllerBase
 {
-    private readonly IUserService _userService;
-
-    public UserController(
-        IUserService userService
-    )
-    {
-        _userService = userService;
-    }
     /// <summary>
     /// Получение списка заказов пользователя
     /// </summary>
-    [HttpGet("GetOrderList/{id}")]
+    [HttpGet("{id}")]
     //[Authorize]
-    public Task<GetUserOrderListResponse> GetById(
+    public async Task<GetUserOrderListResponse> GetById(
+            [FromServices] IMediator mediator,
             [FromQuery] Guid id,
-            CancellationToken cancellationToken)
-    {
-        var result = _userService.GetOrderListAsync(id, cancellationToken);
-
-        return result;
-    }
+            CancellationToken cancellationToken) => await mediator.Send(new GetUserOrderListRequestQuery(id), cancellationToken);
 
     /// <summary>
     /// Добавление пользователя (при регистрации)
     /// </summary>
-    [HttpPost("PostUserLogin")]
+    [HttpPost("auth/")]
     //[Authorize]
-    public Task Authorization(
+    public async Task Authorization(
+            [FromServices] IMediator mediator,
             [FromBody] PostUserLoginRequest request,
             CancellationToken cancellationToken)
     {
-        _userService.AuthorizeAsync(request, cancellationToken);
-
-        return Task.CompletedTask;
+        await mediator.Send(new PostUserLoginRequestCommand(request), cancellationToken);
     }
 
     /// <summary>
     /// Добавление пользователя (при регистрации)
     /// </summary>.
-    [HttpPost("PostUserRegistration")]
+    [HttpPost("register/")]
     //[Authorize]
-    public Task Register(
+    public async Task Register(
+            [FromServices] IMediator mediator,
             [FromBody] PostUserRegistrationRequest request,
             CancellationToken cancellationToken)
     {
-        _userService.RegisterAsync(request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PostUserRegistrationRequestCommand(request), cancellationToken);
     }
 
     /// <summary>
     /// Обновление профиля
     /// </summary>
-    [HttpPut("PutUpdateUserProfile/{id}")]
+    [HttpPut("forUser/{id}")]
     //[Authorize]
-    public Task UpdateUserById(
+    public async Task UpdateUserById(
+            [FromServices] IMediator mediator,
             [FromQuery] Guid id,
             [FromBody] PutUserProfileRequest request,
             CancellationToken cancellationToken)
     {
-        _userService.UpdateUserByIdAsync(id, request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PutUserProfileRequestCommand(id, request), cancellationToken);
     }
 
     /// <summary>
     /// Обновление профиля от имени администратора
     /// </summary>
-    [HttpPut("PutUserProfileForAdmin/{id}")]
+    [HttpPut("forAdmin/{id}")]
     //[Authorize]
-    public Task UpdateUserForAdminById(
+    public async Task UpdateUserForAdminById(
+            [FromServices] IMediator mediator,
             [FromQuery] Guid id,
             [FromBody] PutUserProfileForAdminRequest request,
             CancellationToken cancellationToken)
     {
-        _userService.UpdateUserForAdminByIdAsync(id, request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PutUserProfileForAdminRequestCommand(id, request), cancellationToken);
     }
 }

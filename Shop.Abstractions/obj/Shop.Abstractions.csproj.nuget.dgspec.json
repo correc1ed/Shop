@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Shop\\Shop.Abstractions\\Shop.Abstractions.csproj": {}
+    "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Shop\\Shop.Abstractions\\Shop.Abstractions.csproj": {
+    "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Shop\\Shop.Abstractions\\Shop.Abstractions.csproj",
+        "projectUniqueName": "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj",
         "projectName": "Shop.Abstractions",
-        "projectPath": "D:\\Projects\\Shop\\Shop.Abstractions\\Shop.Abstractions.csproj",
+        "projectPath": "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Shop\\Shop.Abstractions\\obj\\",
+        "outputPath": "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

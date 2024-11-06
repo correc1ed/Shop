@@ -1,44 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Shop.Abstractions.Baskets;
-using Shop.Abstractions.Baskets.Requests.DeleteProductFromBasketById;
-using Shop.Abstractions.Baskets.Requests.PostAddProductToBasketById;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Shop.MessageContracts.Baskets.Requests.DeleteProductFromBasketById;
+using Shop.MessageContracts.Baskets.Requests.PostAddProductToBasketById;
+using Shop.Requests.BasketRequests.DeleteProductFromBasketByIdRequest;
+using Shop.Requests.BasketRequests.PostAddProductToBasketByIdRequest;
 
 namespace Shop.Controllers;
 [ApiController]
 [Route("[controller]")]
 public class BasketController : ApiControllerBase
 {
-    private readonly IBasketService _basketService;
-
-    public BasketController(
-        IBasketService basketService
-    )
-    {
-        _basketService = basketService;
-    }
-
     /// <summary>
     /// Добавление товара в корзину
     /// </summary>
-    [HttpPost("PostProductToBasket")]
-    public Task AddProduct(
+    [HttpPost]
+    public async Task AddProduct(
+            [FromServices] IMediator mediator,
             [FromBody] PostAddProductToBasketByIdRequest request,
             CancellationToken cancellationToken)
     {
-        _basketService.AddProductAsync(request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new PostAddProductToBasketByIdRequestCommand(request), cancellationToken);
     }
 
     /// <summary>
     /// Удаление товара из корзины
     /// </summary>
-    [HttpDelete("DeleteProductFromBasket")]
-    public Task DeleteProductById(
+    [HttpDelete("{id}")]
+    public async Task DeleteProductById(
+            [FromServices] IMediator mediator,
             [FromBody] DeleteProductFromBasketByIdRequest request,
             [FromQuery] Guid id,
             CancellationToken cancellationToken)
     {
-        _basketService.DeleteProductByIdAsync(id, request, cancellationToken);
-        return Task.CompletedTask;
+        await mediator.Send(new DeleteProductFromBasketByIdRequestCommand(id, request), cancellationToken);
     }
 }
