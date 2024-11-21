@@ -1,9 +1,8 @@
-﻿using Shop.Abstractions.Users;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Shop.Core.Entities;
 
-public class User : IUser
+public class User
 {
     /// <summary>
     /// Идентификатор

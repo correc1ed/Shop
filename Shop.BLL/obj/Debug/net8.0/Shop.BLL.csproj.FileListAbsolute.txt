@@ -3,10 +3,8 @@ D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.BLL.dll
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.BLL.pdb
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.Abstractions.dll
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.Core.dll
-D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.DataAccess.dll
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.MessageContracts.dll
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.Core.pdb
-D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.DataAccess.pdb
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.MessageContracts.pdb
 D:\Projects\InternetShopGit\Shop.BLL\bin\Debug\net8.0\Shop.Abstractions.pdb
 D:\Projects\InternetShopGit\Shop.BLL\obj\Debug\net8.0\Shop.BLL.csproj.AssemblyReference.cache

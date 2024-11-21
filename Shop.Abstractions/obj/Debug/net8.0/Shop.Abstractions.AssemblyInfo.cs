@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shop.Abstractions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95516b474b21040b65a81d98b8928008d5e73cbd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d51882351a6408b5143a775b6cf51d94da3f9c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shop.Abstractions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shop.Abstractions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

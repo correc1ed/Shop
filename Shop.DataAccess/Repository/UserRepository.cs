@@ -7,7 +7,7 @@ namespace Shop.DataAccess.Repository;
 public class UserRepository : IUserRepository
 {
     private readonly EfContext _dbContext;
-    UserRepository(
+    public UserRepository(
         EfContext db)
     {
         _dbContext = db;

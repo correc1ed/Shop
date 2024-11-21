@@ -1,9 +1,8 @@
-﻿using Shop.Abstractions.Products;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Shop.Core.Entities;
 
-public class Product : IProduct
+public class Product
 {
     /// <summary>
     /// Идентификатор

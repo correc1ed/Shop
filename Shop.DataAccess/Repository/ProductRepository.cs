@@ -6,7 +6,7 @@ namespace Shop.DataAccess.Repository;
 public class ProductRepository : IProductRepository
 {
     private readonly EfContext _dbContext;
-    ProductRepository(
+    public ProductRepository(
         EfContext db)
     {
         _dbContext = db;

@@ -7,7 +7,7 @@ namespace Shop.DataAccess.Repository;
 public class OrderRepository : IOrderRepository
 {
     private readonly EfContext _dbContext;
-    OrderRepository(
+    public OrderRepository(
         EfContext db)
     {
         _dbContext = db;

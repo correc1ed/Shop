@@ -35,7 +35,7 @@ public class OrderService : IOrderService
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        var order = _orderRepository.GetOrderInfoByIdAsync(orderId, cancellationToken);
+        var order = _orderRepository.GetByIdAsync(orderId).Result;
 
         if (order == null)
         {
@@ -44,7 +44,7 @@ public class OrderService : IOrderService
 
         await _orderRepository.RemoveAsync(order);
 
-        order.StatusDTO = request.StatusDTO;
+        order.StatusDTO =request.StatusDTO;
 
         await _orderRepository.AddAsync(order);
     }
