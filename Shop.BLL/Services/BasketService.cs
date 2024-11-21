@@ -1,36 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop.BLL.Abstractions.Baskets;
-using Shop.Core;
+﻿using Shop.Abstractions.Baskets;
+using Shop.Abstractions.Repository;
 using Shop.Core.Entities;
-using Shop.MessageContracts.Baskets.Requests.PostAddProductToBasketById;
+using Shop.MessageContracts.Baskets.Models;
+using Shop.MessageContracts.Products.Models;
+using Shop.MessageContracts.Requests.Baskets.Requests.PostAddProductToBasketById;
 
 namespace Shop.BLL.Services;
 public class BasketService : IBasketService
 {
-    private readonly EfContext _dbContext;
+    private readonly IBasketRepository _basketRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly IProductRepository _productRepository;
 
     public BasketService(
-        EfContext db
-    )
+        IBasketRepository basketRepository,
+        IUserRepository userRepository,
+        IProductRepository productRepository)
     {
-        _dbContext = db;
+        _basketRepository = basketRepository;
+        _userRepository = userRepository;
+        _productRepository = productRepository;
     }
 
     public async Task AddProductAsync(PostAddProductToBasketByIdRequest request, CancellationToken cancellationToken)
     {
-        if (request is null)
-            throw new ArgumentNullException(nameof(request));
+        var basket = await _basketRepository.GetByUserIdAsync(request.UserId, cancellationToken);
 
-        var user = _dbContext.Users
-            .FirstOrDefault(b => b.Id == request.UserId);
-
-        if (user is null)
-            throw new ArgumentNullException(nameof(request));
-
-        var basket = _dbContext.Baskets
-                .Include(x => x.User)
-                .Include(x => x.Products)
-            .FirstOrDefault(b => b.User.Id == request.UserId);
+        var user = await _userRepository.GetByIdAsync(request.UserId);
 
         var product = new Product()
         {
@@ -44,51 +40,26 @@ public class BasketService : IBasketService
 
         if (basket == null)
         {
-            basket = new Basket()
+            basket = new BasketDTO()
             {
                 Id = Guid.NewGuid(),
                 User = user,
-                Products = new List<Product>(),
+                Products = new List<ProductDTO>(),
                 TotalPrice = 0,
-                Status = Core.Enums.Status.Processing
+                Status = 0
             };
         }
         else
         {
-            _dbContext.Baskets.Remove(basket);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _basketRepository.DeleteAsync(basket.Id, cancellationToken);
         }
-        basket.Products.Add(product);
+        await _productRepository.AddAsync(DTOconvertService.ToProductDTO(product));
 
-        _dbContext.Baskets.Add(basket);
-
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await _basketRepository.AddAsync(basket);
     }
 
     public async Task DeleteProductByIdAsync(Guid userId, Guid productId, CancellationToken cancellationToken)
     {
-        var basket = await _dbContext.Baskets
-                .Include(x => x.User)
-                .Include(x => x.Products)
-            .FirstOrDefaultAsync(b => b.User.Id == userId);
-
-        if (basket == null)
-        {
-            throw new Exception("Корзины с данным идентификатором не существует или вы не правильно его указали");
-        }
-
-        var product = basket.Products.FirstOrDefault(p => p.Id == productId);
-
-        if (product == null)
-        {
-            throw new Exception("Продукта с данным идентификатором не существует или вы не правильно его указали");
-        }
-        _dbContext.Baskets.Remove(basket);
-
-        basket.Products.Remove(product);
-
-        _dbContext.Baskets.Add(basket);
-
-        _dbContext.SaveChanges();
+        await _basketRepository.RemoveProduct(userId, productId);
     }
 }

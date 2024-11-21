@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.MessageContracts.Users.Requests.PostUserLogin;
-using Shop.MessageContracts.Users.Requests.PostUserRegistration;
-using Shop.MessageContracts.Users.Requests.PutUserProfile;
-using Shop.MessageContracts.Users.Requests.PutUserProfileForAdmin;
-using Shop.MessageContracts.Users.Responses.GetOrderList;
-using Shop.Requests.UserRequests.GetUserOrderListRequest;
-using Shop.Requests.UserRequests.PostUserLoginRequest;
-using Shop.Requests.UserRequests.PostUserRegistrationRequest;
-using Shop.Requests.UserRequests.PutUserProfileForAdminRequest;
-using Shop.Requests.UserRequests.PutUserProfileRequest;
+using Shop.BLL.Requests.UserRequests.PostUserLoginRequest;
+using Shop.BLL.Requests.UserRequests.PostUserRegistrationRequest;
+using Shop.BLL.Requests.UserRequests.PutUserProfileForAdminRequest;
+using Shop.BLL.Requests.UserRequests.PutUserProfileRequest;
+using Shop.DataAccess.Requests.UserRequests.GetUserOrderListRequest;
+using Shop.MessageContracts.Requests.Users.Requests.PostUserLogin;
+using Shop.MessageContracts.Requests.Users.Requests.PostUserRegistration;
+using Shop.MessageContracts.Requests.Users.Requests.PutUserProfile;
+using Shop.MessageContracts.Requests.Users.Requests.PutUserProfileForAdmin;
+using Shop.MessageContracts.Requests.Users.Responses.GetOrderList;
 
 namespace Shop.Controllers;
 [ApiController]

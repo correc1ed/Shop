@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.MessageContracts.Products.Requests.PostProduct;
-using Shop.MessageContracts.Products.Requests.PutProduct;
-using Shop.Requests.ProductRequests.PostProductRequest;
-using Shop.Requests.ProductRequests.PutProductRequest;
+using Shop.BLL.Requests.ProductRequests.PostProductRequest;
+using Shop.BLL.Requests.ProductRequests.PutProductRequest;
+using Shop.MessageContracts.Requests.Products.Requests.PostProduct;
+using Shop.MessageContracts.Requests.Products.Requests.PutProduct;
 
 namespace Shop.Controllers;
 [ApiController]

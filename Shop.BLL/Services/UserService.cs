@@ -1,26 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Shop.BLL.Abstractions.Jwt;
-using Shop.BLL.Abstractions.Users;
-using Shop.Core;
+﻿using Shop.Abstractions.Jwt;
+using Shop.Abstractions.Repository;
+using Shop.Abstractions.Users;
 using Shop.Core.Entities;
-using Shop.MessageContracts.Users.Requests.PostUserLogin;
-using Shop.MessageContracts.Users.Requests.PostUserRegistration;
-using Shop.MessageContracts.Users.Requests.PutUserProfile;
-using Shop.MessageContracts.Users.Requests.PutUserProfileForAdmin;
-using Shop.MessageContracts.Users.Responses.GetOrderList;
+using Shop.MessageContracts.Requests.Users.Requests.PostUserLogin;
+using Shop.MessageContracts.Requests.Users.Requests.PostUserRegistration;
+using Shop.MessageContracts.Requests.Users.Requests.PutUserProfile;
+using Shop.MessageContracts.Requests.Users.Requests.PutUserProfileForAdmin;
+using Shop.MessageContracts.Users.Models;
 
 namespace Shop.BLL.Services;
 public class UserService : IUserService
 {
-    private readonly EfContext _dbContext;
+    private readonly IUserRepository _userRepository;
     private readonly IJwtProvider _jwtProvider;
 
     public UserService(
-        EfContext db,
+        IUserRepository userRepository,
         IJwtProvider jwtProvider
     )
     {
-        _dbContext = db;
+        _userRepository = userRepository;
         _jwtProvider = jwtProvider;
     }
 
@@ -38,8 +37,8 @@ public class UserService : IUserService
         var hashedPassword = PasswordEncryptionService.HashPassword(request.Password);
 
         var user = new User(request.Name, request.Email, hashedPassword, false);
-        _dbContext.Users.Add(user);
-        _dbContext.SaveChanges();
+
+        await _userRepository.AddAsync(DTOconvertService.ToUserDTO(user));
     }
 
     public async Task<string> AuthorizeAsync(PostUserLoginRequest request, CancellationToken cancellationToken)
@@ -47,7 +46,9 @@ public class UserService : IUserService
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        var user = _dbContext.Users.FirstOrDefault(x => x.Email == request.Email);
+        var users = await _userRepository.GetAllAsync();
+        var user = users.FirstOrDefault(x => x.Email == request.Email);
+
 
         if (user == null)
         {
@@ -56,7 +57,7 @@ public class UserService : IUserService
 
         if (PasswordEncryptionService.VerifyPassword(request.Password, user.Password))
         {
-            var token = _jwtProvider.GenerateToken(DTOconvertService.ToUserDTO(user));
+            var token = _jwtProvider.GenerateToken(user);
 
             return token;
         }
@@ -66,48 +67,20 @@ public class UserService : IUserService
         }
     }
 
-    public string GenerateToken(User user)
-    {
-        return "";
-    }
-
-    public async Task<GetUserOrderListResponse> GetOrderListAsync(Guid userId, CancellationToken cancellationToken)
-    {
-        if (userId == null)
-        {
-            throw new Exception("Запрос пустой.");
-        }
-        var orders = _dbContext.Orders
-            .Include(u => u.User)
-            .Include(p => p.Products)
-            .Where(o => o.User.Id == userId).ToList();
-
-        if (orders == null || orders.Count == 0)
-        {
-            throw new Exception("У пользователя с данным идентификатором отсутствуют заказы");
-        }
-
-        return new GetUserOrderListResponse()
-        {
-            OrderDTOs = DTOconvertService.ToOrderDTOs(orders)
-        };
-    }
-
     public async Task UpdateUserByIdAsync(Guid userId, PutUserProfileRequest request, CancellationToken cancellationToken)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        var user = _dbContext.Users
-            .FirstOrDefault(o => o.Id == userId);
+        var user = await _userRepository.GetByIdAsync(userId);
 
         if (user == null)
         {
             throw new Exception("Пользователя с данным идентификатором не существует или вы не правильно его указали");
         }
 
-        _dbContext.Users.Remove(user);
-        
+        await _userRepository.RemoveAsync(user);
+
         var hashedPassword = PasswordEncryptionService.HashPassword(request.Password);
 
         var resultUser = new User()
@@ -118,9 +91,7 @@ public class UserService : IUserService
             Password = hashedPassword
         };
 
-        _dbContext.Users.Add(resultUser);
-
-        _dbContext.SaveChanges();
+        await _userRepository.AddAsync(DTOconvertService.ToUserDTO(resultUser));
     }
 
     public async Task UpdateUserForAdminByIdAsync(Guid userId, PutUserProfileForAdminRequest request, CancellationToken cancellationToken)
@@ -128,19 +99,18 @@ public class UserService : IUserService
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        var user = _dbContext.Users
-            .FirstOrDefault(o => o.Id == userId);
+        var user = await _userRepository.GetByIdAsync(userId);
 
         if (user == null)
         {
             throw new Exception("Пользователя с данным идентификатором не существует или вы не правильно его указали");
         }
 
-        _dbContext.Users.Remove(user);
+        await _userRepository.RemoveAsync(user);
 
         var hashedPassword = PasswordEncryptionService.HashPassword(request.Password);
 
-        var resultUser = new User()
+        var resultUser = new UserDTO()
         {
             Id = user.Id,
             Name = request.Name,
@@ -148,8 +118,7 @@ public class UserService : IUserService
             Password = hashedPassword,
             IsAdministrator = request.IsAdministrator
         };
-        _dbContext.Users.Add(resultUser);
 
-        _dbContext.SaveChanges();
+        await _userRepository.AddAsync(resultUser);
     }
 }

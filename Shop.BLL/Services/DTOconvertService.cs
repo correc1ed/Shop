@@ -1,8 +1,8 @@
 ﻿using Shop.Core.Entities;
 using Shop.Core.Enums;
-using Shop.MessageContracts;
 using Shop.MessageContracts.Orders.Models;
 using Shop.MessageContracts.Products.Models;
+using Shop.MessageContracts.Users;
 using Shop.MessageContracts.Users.Models;
 
 namespace Shop.BLL.Services;

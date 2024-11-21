@@ -315,9 +315,19 @@
           }
         }
       },
+      "Shop.Abstractions/1.0.0": {
+        "dependencies": {
+          "Shop.MessageContracts": "1.0.0"
+        },
+        "runtime": {
+          "Shop.Abstractions.dll": {}
+        }
+      },
       "Shop.BLL/1.0.0": {
         "dependencies": {
+          "MediatR": "12.4.1",
           "Shop.Core": "1.0.0",
+          "Shop.DataAccess": "1.0.0",
           "Shop.MessageContracts": "1.0.0"
         },
         "runtime": {
@@ -334,10 +344,19 @@
           "Shop.Core.dll": {}
         }
       },
-      "Shop.MessageContracts/1.0.0": {
+      "Shop.DataAccess/1.0.0": {
         "dependencies": {
+          "MediatR": "12.4.1",
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.10",
+          "Shop.Abstractions": "1.0.0",
           "Shop.Core": "1.0.0"
         },
+        "runtime": {
+          "Shop.DataAccess.dll": {}
+        }
+      },
+      "Shop.MessageContracts/1.0.0": {
         "runtime": {
           "Shop.MessageContracts.dll": {}
         }
@@ -574,12 +593,22 @@
       "path": "system.identitymodel.tokens.jwt/7.1.2",
       "hashPath": "system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
     },
+    "Shop.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Shop.BLL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Shop.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shop.DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

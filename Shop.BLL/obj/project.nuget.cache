@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "n1lyl37w0Ss+8oJSwWqAqCrDRry+kbA4D0G2uwh3s/71snA8E9bnPJyn5/nIFMilSp7Z8n7jwspzyw6BFobMfQ==",
-  "success": true,
+  "dgSpecHash": "Q1wyPtADbs0c72Lo9HSb3WGn2FG6NncaAf8O1n/x9rZxNXNgDRB18xWcISG3AX7uvZhz9H9J57HZvViT9JnOIA==",
+  "success": false,
   "projectFilePath": "D:\\Projects\\InternetShopGit\\Shop.BLL\\Shop.BLL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.10\\microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.10\\microsoft.entityframeworkcore.8.0.10.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.10\\microsoft.entityframeworkcore.abstractions.8.0.10.nupkg.sha512",
@@ -28,5 +30,15 @@
     "C:\\Users\\user\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.10\\npgsql.entityframeworkcore.postgresql.8.0.10.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 9.0.0 to 8.0.10. Reference the package directly from the project to select a different version. \r\n Shop.BLL -> Shop.Core -> Shop.Abstractions -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n Shop.BLL -> Shop.Core -> Microsoft.EntityFrameworkCore (>= 8.0.10)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

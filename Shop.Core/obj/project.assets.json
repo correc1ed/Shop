@@ -961,6 +961,30 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "Shop.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.0",
+          "Shop.MessageContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Shop.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shop.Abstractions.dll": {}
+        }
+      },
+      "Shop.MessageContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shop.MessageContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shop.MessageContracts.dll": {}
+        }
       }
     }
   },
@@ -2445,6 +2469,16 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Shop.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../Shop.Abstractions/Shop.Abstractions.csproj",
+      "msbuildProject": "../Shop.Abstractions/Shop.Abstractions.csproj"
+    },
+    "Shop.MessageContracts/1.0.0": {
+      "type": "project",
+      "path": "../Shop.MessageContracts/Shop.MessageContracts.csproj",
+      "msbuildProject": "../Shop.MessageContracts/Shop.MessageContracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2453,7 +2487,8 @@
       "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.10"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.10",
+      "Shop.Abstractions >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2488,7 +2523,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj": {
+              "projectPath": "D:\\Projects\\InternetShopGit\\Shop.Abstractions\\Shop.Abstractions.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2545,5 +2584,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 9.0.0 to 8.0.10. Reference the package directly from the project to select a different version. \r\n Shop.Core -> Shop.Abstractions -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n Shop.Core -> Microsoft.EntityFrameworkCore (>= 8.0.10)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

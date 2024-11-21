@@ -1,19 +1,19 @@
-﻿using Shop.BLL.Abstractions.Products;
-using Shop.Core;
+﻿using Shop.Abstractions.Products;
+using Shop.Abstractions.Repository;
 using Shop.Core.Entities;
-using Shop.MessageContracts.Products.Requests.PostProduct;
-using Shop.MessageContracts.Products.Requests.PutProduct;
+using Shop.MessageContracts.Requests.Products.Requests.PostProduct;
+using Shop.MessageContracts.Requests.Products.Requests.PutProduct;
 
 namespace Shop.BLL.Services;
 public class ProductService : IProductService
 {
-    private readonly EfContext _dbContext;
+    private readonly IProductRepository _productRepository;
 
     public ProductService(
-        EfContext db
+        IProductRepository productRepository
     )
     {
-        _dbContext = db;
+        _productRepository = productRepository;
     }
     public async Task PostAddProductAsync(PostProductRequest request, CancellationToken cancellationToken)
     {
@@ -22,25 +22,21 @@ public class ProductService : IProductService
 
         var product = Product.Add(request.Name, request.Description, request.Price, request.CountInStorage, request.Category);
 
-        _dbContext.Products.Add(product);
-
-        _dbContext.SaveChanges();
+        await _productRepository.AddAsync(DTOconvertService.ToProductDTO(product));
     }
     public async Task PutUpdateProductInfoAsync(Guid id, PutProductRequest request, CancellationToken cancellationToken)
     {
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        var product = _dbContext.Products
-            .FirstOrDefault(o => o.Id == id);
+        var product = await _productRepository.GetByIdAsync(id);
 
         if (product == null)
         {
             throw new Exception("Товара с данным идентификатором не существует или вы не правильно его указали");
         }
 
-        _dbContext.Products.Remove(product);
-        _dbContext.SaveChanges();
+       await _productRepository.RemoveAsync(product);
 
         var updateProduct = new Product
         {
@@ -52,7 +48,6 @@ public class ProductService : IProductService
             Category = request.Category
         };
 
-        _dbContext.Products.Add(updateProduct);
-        _dbContext.SaveChanges();
+        await _productRepository.AddAsync(DTOconvertService.ToProductDTO(updateProduct));
     }
 }

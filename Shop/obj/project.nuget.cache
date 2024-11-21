@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "yviJYGi5nqOVKbsWRuu/jXmuc0qTeuNumEycA2mDjVuZ+rmfBONsj3LAomu3L5YQ1KexuxwFya2bORf95gdhNA==",
-  "success": true,
+  "dgSpecHash": "IbYGcXle3vAX+FqynqEFjgkvYPHPhden77tDIVy89X2MIxt0Tn/SB3E8oTK+p6AfmV61GaFNULhMlxOE4KV4wA==",
+  "success": false,
   "projectFilePath": "D:\\Projects\\InternetShopGit\\Shop\\Shop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
@@ -37,5 +37,24 @@
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 9.0.0 to 8.0.10. Reference the package directly from the project to select a different version. \r\n Shop -> Shop.DataAccess -> Shop.Abstractions -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n Shop -> Shop.DataAccess -> Microsoft.EntityFrameworkCore (>= 8.0.10)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 9.0.0 to 8.0.10. Reference the package directly from the project to select a different version. \r\n Shop -> Shop.BLL -> Shop.Core -> Shop.Abstractions -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n Shop -> Shop.BLL -> Shop.Core -> Microsoft.EntityFrameworkCore (>= 8.0.10)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

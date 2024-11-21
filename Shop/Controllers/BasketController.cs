@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.MessageContracts.Baskets.Requests.DeleteProductFromBasketById;
-using Shop.MessageContracts.Baskets.Requests.PostAddProductToBasketById;
-using Shop.Requests.BasketRequests.DeleteProductFromBasketByIdRequest;
-using Shop.Requests.BasketRequests.PostAddProductToBasketByIdRequest;
+using Shop.BLL.Requests.BasketRequests.DeleteProductFromBasketByIdRequest;
+using Shop.BLL.Requests.BasketRequests.PostAddProductToBasketByIdRequest;
+using Shop.MessageContracts.Requests.Baskets.Requests.DeleteProductFromBasketById;
+using Shop.MessageContracts.Requests.Baskets.Requests.PostAddProductToBasketById;
 
 namespace Shop.Controllers;
 [ApiController]

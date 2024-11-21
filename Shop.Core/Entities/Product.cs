@@ -1,10 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Shop.Abstractions.Products;
+using System.Text.Json.Serialization;
 
 namespace Shop.Core.Entities;
 
-public class Product
+public class Product : IProduct
 {
-
     /// <summary>
     /// Идентификатор
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Shop.BLL.Abstractions.Jwt;
+using Shop.Abstractions.Jwt;
 using Shop.MessageContracts.Users.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

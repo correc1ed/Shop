@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "VGm3Jh9ho5fblWsOerQyRpitiIC50EQilsxBKpLq6/2pgi04Qv8jB9NXpI+bBrbyimGE5MWe8+FlbFpdyKnzjA==",
-  "success": true,
+  "dgSpecHash": "xL03ofj8/fBTA++iqBGJoX3q8Ce+ccUpNQopZcqQG/4PsHwv6tWsasQnqCTr07nn0M3KslrOBikqdew3ZAJhPQ==",
+  "success": false,
   "projectFilePath": "D:\\Projects\\InternetShopGit\\Shop.Core\\Shop.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -52,5 +52,15 @@
     "C:\\Users\\user\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 9.0.0 to 8.0.10. Reference the package directly from the project to select a different version. \r\n Shop.Core -> Shop.Abstractions -> Microsoft.EntityFrameworkCore (>= 9.0.0) \r\n Shop.Core -> Microsoft.EntityFrameworkCore (>= 8.0.10)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

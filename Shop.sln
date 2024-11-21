@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.MessageContracts", "Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.BLL", "Shop.BLL\Shop.BLL.csproj", "{911DC2F2-EBDE-42AF-A2DA-115FB5600C13}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.DataAccess", "Shop.DataAccess\Shop.DataAccess.csproj", "{FE052351-C25A-4DA1-9902-38924EC62B13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Abstractions", "Shop.Abstractions\Shop.Abstractions.csproj", "{80F0A79B-636A-4EF8-84E5-AFBAA8B6A704}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{911DC2F2-EBDE-42AF-A2DA-115FB5600C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{911DC2F2-EBDE-42AF-A2DA-115FB5600C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{911DC2F2-EBDE-42AF-A2DA-115FB5600C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE052351-C25A-4DA1-9902-38924EC62B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE052351-C25A-4DA1-9902-38924EC62B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE052351-C25A-4DA1-9902-38924EC62B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE052351-C25A-4DA1-9902-38924EC62B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F0A79B-636A-4EF8-84E5-AFBAA8B6A704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F0A79B-636A-4EF8-84E5-AFBAA8B6A704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F0A79B-636A-4EF8-84E5-AFBAA8B6A704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F0A79B-636A-4EF8-84E5-AFBAA8B6A704}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

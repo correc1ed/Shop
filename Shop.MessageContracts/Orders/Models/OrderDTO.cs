@@ -1,6 +1,5 @@
-﻿using Shop.Core.Entities;
-using Shop.Core.Enums;
-using Shop.MessageContracts.Products.Models;
+﻿using Shop.MessageContracts.Products.Models;
+using Shop.MessageContracts.Users;
 using Shop.MessageContracts.Users.Models;
 
 namespace Shop.MessageContracts.Orders.Models;
@@ -36,18 +35,4 @@ public class OrderDTO
     /// Дата доставки
     /// </summary>
     public DateTime DeliveredDate { get; set; }
-
-    public static Order Create(User user, List<Product> products, Status status, DateTime createdAt, DateTime deliveredDate)
-    {
-        return new Order()
-        {
-            Id = Guid.NewGuid(),
-            User = user,
-            Products = products,
-            Status = status,
-            CreatedAt = createdAt,
-            DeliveredDate = deliveredDate
-        };
-
-    }
 }

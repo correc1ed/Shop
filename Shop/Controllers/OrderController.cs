@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shop.MessageContracts.Orders.Requests.PostOrder;
-using Shop.MessageContracts.Orders.Requests.PutOrderStatus;
-using Shop.MessageContracts.Orders.Responses.GetOrderInformationById;
-using Shop.Requests.OrderRequests.GetOrderInformationRequest;
-using Shop.Requests.OrderRequests.PostOrderRequest;
-using Shop.Requests.OrderRequests.PutOrderStatusRequest;
+using Shop.BLL.Requests.OrderRequests.PostOrderRequest;
+using Shop.BLL.Requests.OrderRequests.PutOrderStatusRequest;
+using Shop.DataAccess.Requests.OrderRequests.GetOrderInformationRequest;
+using Shop.MessageContracts.Requests.Orders.Requests.PostOrder;
+using Shop.MessageContracts.Requests.Orders.Requests.PutOrderStatus;
+using Shop.MessageContracts.Requests.Orders.Responses.GetOrderInformationById;
 
 namespace Shop.Controllers;
 [ApiController]
